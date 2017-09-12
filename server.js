@@ -14,6 +14,10 @@ var cookieParser = require('cookie-parser');
 const {router: usersRouter} = require('./users');
 const {router: authRouter, basicStrategy, jwtStrategy} = require('./auth');
 const {router: simpleRouter} = require('./simple');
+const {router: canvasRouter} = require('./canvas');
+const {Canvas} = require('./canvas/models');
+
+const router = express.Router();
 
 mongoose.Promise = global.Promise;
 
@@ -43,6 +47,8 @@ app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
 app.use('/api/simple/', simpleRouter);
 
+//app.use('/', simpleRouter);
+
 // A protected endpoint which needs a valid JWT to access it
 app.get('/api/protected',
     passport.authenticate('jwt', {session: false}),
@@ -62,11 +68,17 @@ app.set('view engine', 'jade');
 
 
 (function() {
-	console.log('adf')
+  console.log('adf')
   var io;
+  var timer = null;
+
   io = require('socket.io').listen(4000);
   io.sockets.on('connection', function(socket) {
     socket.on('drawClick', function(data) {
+
+      clearTimeout(timer);
+      timer = setTimeout(function() { doStuff(data)} , 1000)
+
       socket.broadcast.emit('draw', {
         x: data.x,
         y: data.y,
@@ -77,6 +89,27 @@ app.set('view engine', 'jade');
 }).call(this);
 
 
+function doStuff(data) {
+    	console.log('save stuff', data);
+
+	//Ok so here I'm going to have to find the existing canvas and update it. 
+	//I'm also going to need a new create canvas button
+	//
+	//
+	Canvas.updateOne(
+			{ _id:  '59b75be8a9ed35130c2b6467'},
+			{ $set: {canvas: Date.now()}},
+			{ $upsert: true }		
+			)
+		.then(canvas => {
+			console.log(canvas)
+			//return res.status(201).json(user.apiRepr());
+		})	
+		.catch(err => {
+		})	
+
+}
+	
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

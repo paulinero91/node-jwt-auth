@@ -57,6 +57,11 @@
     x = e.offsetX;
     y = e.offsetY;
     App.draw(x, y, type);
+	
+    var canvas = $("canvas")[0].toDataURL(); 
+    console.log('canvas');
+    console.log(canvas);
+
     App.socket.emit('drawClick', {
       x: x,
       y: y,
