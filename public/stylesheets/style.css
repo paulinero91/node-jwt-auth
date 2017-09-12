@@ -1,10 +1,44 @@
-
+canvas{
+  background:white;
+  width: 100%;
+  margin: 10px 0;
+}
 
 body{
   background: #eee;
+  padding: 50px;
 }
 
-canvas{
-        background:white;
+a{
+  color: #00B7FF;
+  *: unset;
 }
 
+img#logo{
+  margin: 0;
+  display: block;
+}
+
+#hey{
+  color: white;
+}
+
+.intro{
+  color: #727272;
+
+  font-family: 'Roboto', sans-serif;
+}
+
+button{
+  color: white;
+  background-color: #D9604E;
+  border-radius: 25px;
+  border: 0;
+  box-shadow: none;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px; 
+  width: 300px;
+ /* height: 300px;*/
+ padding: 10px 40px;
+ margin: 10px 0;
+}

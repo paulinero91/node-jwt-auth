@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  body
+    img#logo(src="/imgs/community-draw-logo.png" alt="Community Draw Logo")
+    article
+     // our canvas will be inserted here
+    p.intro Welcome to Community Draw where you can make fun projects and collaborate with other artists around the world!
+   a(href= "/canvas")
+    button(onclick='something()') Start a New Project
+   a(href= "/projects")
+    button(onclick='something()') Add to a Project
