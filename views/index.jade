@@ -7,6 +7,12 @@ block content
       // our canvas will be inserted here
   h1#hey= title
   p.hello Welcome to #{title} 
-
+  div
+   form(action='/new',method='post')
+     div(data-role='fieldcontain')
+      //fieldset(data-role='controlgroup')
+        //label(for='email') email
+           //input(id='email',type='text',value='',placeholder='@',name='email') 
+      input(type='submit',value='Create New')
 
 

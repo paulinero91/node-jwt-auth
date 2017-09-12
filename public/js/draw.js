@@ -58,14 +58,22 @@
     y = e.offsetY;
     App.draw(x, y, type);
 	
+
+    var url = document.URL;
+    var part = url.substring(url.lastIndexOf('/') + 1);
+    console.log(part)
+
+
     var canvas = $("canvas")[0].toDataURL(); 
     console.log('canvas');
-    console.log(canvas);
+    //console.log(canvas);
 
     App.socket.emit('drawClick', {
       x: x,
       y: y,
-      type: type
+      type: type,
+      canvas:canvas,
+      canvasId:part 
     });
   });
   $(function() {

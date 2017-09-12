@@ -15,6 +15,10 @@ const {router: usersRouter} = require('./users');
 const {router: authRouter, basicStrategy, jwtStrategy} = require('./auth');
 const {router: simpleRouter} = require('./simple');
 const {router: canvasRouter} = require('./canvas');
+const {router: singleRouter} = require('./single');
+
+//const {router: allRouter} = require('./all');
+
 const {Canvas} = require('./canvas/models');
 
 const router = express.Router();
@@ -46,6 +50,10 @@ passport.use(jwtStrategy);
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
 app.use('/api/simple/', simpleRouter);
+app.use('/all', canvasRouter);
+
+app.use('/new', singleRouter);
+
 
 //app.use('/', simpleRouter);
 
@@ -58,6 +66,11 @@ app.get('/api/protected',
         });
     }
 );
+
+router.get('/all', function(req, res, next) {
+  	res.render('index', { title: 'hi' });
+});
+
 
 //app.use('*', (req, res) => {
   //return res.status(404).json({message: 'Not Found'});
@@ -90,7 +103,8 @@ app.set('view engine', 'jade');
 
 
 function doStuff(data) {
-    	console.log('save stuff', data);
+    	console.log('save stuff', console.log(data.canvasId));
+	
 
 	//Ok so here I'm going to have to find the existing canvas and update it. 
 	//I'm also going to need a new create canvas button
@@ -98,7 +112,7 @@ function doStuff(data) {
 	//
 	Canvas.updateOne(
 			{ _id:  '59b75be8a9ed35130c2b6467'},
-			{ $set: {canvas: Date.now()}},
+			{ $set: {canvas: data} },
 			{ $upsert: true }		
 			)
 		.then(canvas => {

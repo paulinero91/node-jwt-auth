@@ -1,14 +1,32 @@
 extends layout
 
 block content
+  -  function capitalize(s) {  return 'hi'; };
+  script.
+   var something = function() {
+     console.log('something')
+   }
+
+   var drawDataURIOnCanvas = function(strDataURI, canvas) {
+     console.log('in here'); 
+     "use strict";
+     var img = new window.Image();
+     img.addEventListener("load", function () {
+         canvas.getContext("2d").drawImage(img, 0, 0);
+     });
+     img.setAttribute("src", strDataURI);
+   }
+
+
   h1= title
-  p hello to #{users}
-  span users
-  - each user in users
-    p
-      = user.firstName
-    b
-      = user.lastName
-    i
-      = user.userName
+  p hello to as #{images}
+  span images
+  - each image in images
+    p #{capitalize(image.canvas)}
+    p #{image.canvas} 
+    a(href='canvas/#{image._id}') 
+     img(alt='Oops', src='#{image.canvas.canvas}')
+
+    button(onclick='drawDataURIOnCanvas(image.canvas)') Click
+
     hr
