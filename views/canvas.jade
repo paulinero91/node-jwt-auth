@@ -3,10 +3,11 @@ extends layout
 
 block content
   body
+    canvas
     article
       // our canvas will be inserted here
-  h1#hey= title
-  p.hello Welcome to #{title} 
-
+    h1#hey= canvas
+    p.hello Welcome to #{canvas} 
+    img(src='#{canvas.canvas}')
 
 
