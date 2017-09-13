@@ -1,10 +1,12 @@
+  //console.log('in here', local_data)
+
 (function() {
   var App;
   App = {};
   /*
   	Init 
   */
-  console.log('in here')
+  
   App.init = function() {
     App.canvas = document.createElement('canvas');
     // App.canvas.height = 400;
@@ -16,6 +18,15 @@
 
     // });
 
+    console.log('in 2 here', local_data[0].canvas.canvas)
+/*var myCanvas = document.getElementById('my_canvas_id');
+var ctx = myCanvas.getContext('2d');
+var img = new Image;
+img.onload = function(){
+  ctx.drawImage(img,0,0); // Or at whatever offset you like
+};
+img.src = strDataURI;*/
+
     App.canvas.height = 400;
     App.canvas.width = $('body').width();
 
@@ -24,6 +35,14 @@
     App.ctx.fillStyle = "solid";
     App.ctx.strokeStyle = "#ECD018";
     
+    console.log(App)
+var img = new Image;
+img.onload = function(){
+  App.ctx.drawImage(img,0,0); // Or at whatever offset you like
+};
+img.src = local_data[0].canvas.canvas;
+
+
     setInterval(function(){
 	    App.ctx.strokeStyle = "#"+((1<<24)*Math.random()|0).toString(16)
     }, 2000)

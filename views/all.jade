@@ -24,7 +24,7 @@ block content
   - each image in images
     p #{capitalize(image.canvas)}
     p #{image.canvas} 
-    a(href='canvas/#{image._id}') 
+    a(href='/new/canvas/#{image._id}') 
      img(alt='Oops', src='#{image.canvas.canvas}')
 
     button(onclick='drawDataURIOnCanvas(image.canvas)') Click

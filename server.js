@@ -84,13 +84,22 @@ app.set('view engine', 'jade');
   console.log('adf')
   var io;
   var timer = null;
+  var data = null; 
+  var id = null;	 
 
   io = require('socket.io').listen(4000);
   io.sockets.on('connection', function(socket) {
     socket.on('drawClick', function(data) {
+	console.log('dataid')
+
+	console.log(data.canvasId)
+      data = data;
+      
+      id=data.canvasId; 	 
+	 
 
       clearTimeout(timer);
-      timer = setTimeout(function() { doStuff(data)} , 1000)
+      timer = setTimeout(function() { console.log('in fun ' +id); doStuff(data, id)} , 1000)
 
       socket.broadcast.emit('draw', {
         x: data.x,
@@ -99,11 +108,18 @@ app.set('view engine', 'jade');
       });
     });
   });
+
+
+
+
+
+
 }).call(this);
 
 
-function doStuff(data) {
-    	console.log('save stuff', console.log(data.canvasId));
+function doStuff(data, id) {
+
+    	console.log('save stuff', id);
 	
 
 	//Ok so here I'm going to have to find the existing canvas and update it. 
@@ -111,11 +127,12 @@ function doStuff(data) {
 	//
 	//
 	Canvas.updateOne(
-			{ _id:  '59b75be8a9ed35130c2b6467'},
+			{ _id:  id},
 			{ $set: {canvas: data} },
 			{ $upsert: true }		
 			)
 		.then(canvas => {
+			console.log('hi')
 			console.log(canvas)
 			//return res.status(201).json(user.apiRepr());
 		})	

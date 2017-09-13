@@ -2,12 +2,21 @@
 extends layout
 
 block content
+
+
+
   body
-    canvas
-    article
+    article#my_canvas_id
       // our canvas will be inserted here
     h1#hey= canvas
     p.hello Welcome to #{canvas} 
-    img(src='#{canvas.canvas}')
+    //button(class="btn", onclick='drawDataURIOnCanvas(#{canvas.canvas}, $(article))')
+    p #{canvas}
+    //img(src='#{canvas.canvas}')
 
+  script(type='text/javascript').
+    var local_data = !{JSON.stringify(canvas)} 
+
+  script(type='text/javascript', src='../../js/draw.js')
+  script(type='text/javascript', src='../../js/script.js')
 
