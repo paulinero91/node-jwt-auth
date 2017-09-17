@@ -1,3 +1,7 @@
+*{
+  text-align: center;
+}
+
 canvas{
   background:white;
   width: 100%;
@@ -15,8 +19,10 @@ a{
 }
 
 img#logo{
-  margin: 0;
-  display: block;
+ /* margin: 0;*/
+  width: 50%;
+  display: inline-block;
+  text-align: center;
 }
 
 #hey{
@@ -40,5 +46,9 @@ button{
   width: 300px;
  /* height: 300px;*/
  padding: 10px 40px;
- margin: 10px 0;
+ margin: 10px ;
+}
+
+button:hover{
+  background-color: #7FBBA9;
 }
