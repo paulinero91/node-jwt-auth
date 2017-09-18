@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs');
+/*const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
@@ -15,4 +15,4 @@ const CanvasSchema = mongoose.Schema({
 
 const Canvas = mongoose.model('Canvas', CanvasSchema);
 
-module.exports = {Canvas};
+module.exports = {Canvas};*/

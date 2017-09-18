@@ -1,14 +1,34 @@
 extends layout
 
 block content
-  h1= title
-  p hello to #{users}
-  span users
-  - each user in users
-    p
-      = user.firstName
-    b
-      = user.lastName
-    i
-      = user.userName
+  -  function capitalize(s) {  return 'hi'; };
+  script.
+   var something = function() {
+     console.log('something')
+   }
+
+   var drawDataURIOnCanvas = function(strDataURI, canvas) {
+     console.log('in here'); 
+     "use strict";
+     var img = new window.Image();
+     img.addEventListener("load", function () {
+         canvas.getContext("2d").drawImage(img, 0, 0);
+     });
+     img.setAttribute("src", strDataURI);
+   }
+
+
+  a(href= "/")
+    img#logo(src="/imgs/community-draw-logo.png" alt="Community Draw Logo")
+  form(action='/new',method='post')
+    button(type='submit') Start a New Project
+  - each image in images
+    //p #{capitalize(image.canvas)} 
+    a(href='/new/canvas/#{image._id}') 
+     img(alt='Oops', src='#{image.canvas.canvas}')
+
+    //button(onclick='drawDataURIOnCanvas(image.canvas)') Click
+
     hr
+  form(action='/new',method='post')
+    button(type='submit') Start a New Project

@@ -1,10 +1,12 @@
+  //console.log('in here', local_data)
+
 (function() {
   var App;
   App = {};
   /*
   	Init 
   */
-  console.log('in here')
+  
   App.init = function() {
     App.canvas = document.createElement('canvas');
     // App.canvas.height = 400;
@@ -16,6 +18,15 @@
 
     // });
 
+    console.log('in 2 here', local_data[0].canvas.canvas)
+/*var myCanvas = document.getElementById('my_canvas_id');
+var ctx = myCanvas.getContext('2d');
+var img = new Image;
+img.onload = function(){
+  ctx.drawImage(img,0,0); // Or at whatever offset you like
+};
+img.src = strDataURI;*/
+
     App.canvas.height = 400;
     App.canvas.width = $('body').width();
 
@@ -24,6 +35,14 @@
     App.ctx.fillStyle = "solid";
     App.ctx.strokeStyle = "#ECD018";
     
+    console.log(App)
+var img = new Image;
+img.onload = function(){
+  App.ctx.drawImage(img,0,0); // Or at whatever offset you like
+};
+img.src = local_data[0].canvas.canvas;
+
+
     setInterval(function(){
 	    App.ctx.strokeStyle = "#"+((1<<24)*Math.random()|0).toString(16)
     }, 2000)
@@ -52,20 +71,39 @@
     var offset, type, x, y;
     type = e.handleObj.type;
     offset = $(this).offset();
-    e.offsetX = e.layerX - offset.left;
-    e.offsetY = e.layerY - offset.top;
+    e.offsetX = e.layerX; 
+    e.offsetY = e.layerY;
     x = e.offsetX;
     y = e.offsetY;
+
+
+
+    // var offset = $("").offset(); 
+    var posY = offset.top - $(window).scrollTop(); 
+    var posX = offset.left - $(window).scrollLeft();
+
+
+
     App.draw(x, y, type);
 	
+    console.log(offset, x, y)
+    window.can = this;
+
+    var url = document.URL;
+    var part = url.substring(url.lastIndexOf('/') + 1);
+    console.log(part)
+
+
     var canvas = $("canvas")[0].toDataURL(); 
     console.log('canvas');
-    console.log(canvas);
+    //console.log(canvas);
 
     App.socket.emit('drawClick', {
       x: x,
       y: y,
-      type: type
+      type: type,
+      canvas:canvas,
+      canvasId:part 
     });
   });
   $(function() {

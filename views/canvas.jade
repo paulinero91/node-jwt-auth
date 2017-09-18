@@ -1,16 +1,22 @@
 extends layout
 
 block content
+
+
+
   body
-  a(href= "/")
-    img#logo(src="/imgs/community-draw-logo.png" alt="Community Draw Logo")
-    //a(href= "/canvas")
-      //button(onclick='something()') Start a New Project
-    //a(href= "/projects")
-      //button(onclick='something()') Add to a Project
-    article
-     // our canvas will be inserted here
-   a(href= "/canvas")
-    button(onclick='something()') Start a New Project
-   a(href= "/projects")
-    button(onclick='something()') Add to a Project
+    a(href= "/")
+      img#logo(src="/imgs/community-draw-logo.png" alt="Community Draw Logo")
+    article#my_canvas_id
+      // our canvas will be inserted here
+    //button(class="btn", onclick='drawDataURIOnCanvas(#{canvas.canvas}, $(article))')
+    //img(src='#{canvas.canvas}')
+    form(action='/new',method='post')
+      button(type='submit') Start a New Project
+    a(href= "/projects")
+      button(onclick='something()') Add to a Project
+  script(type='text/javascript').
+    var local_data = !{JSON.stringify(canvas)} 
+
+  script(type='text/javascript', src='../../js/draw.js')
+  script(type='text/javascript', src='../../js/script.js')

@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
   return Canvas
     .find()
 
-    .then(simples => res.render("index", {title: simples}))
+    .then(canvases => {res.render("all", {images: canvases, fun: console.log(Date.now()) })})
     .catch(err => res.status(500).json({message: 'Internal server error'}));
 });
 
