@@ -26,7 +26,7 @@ const router = express.Router();
 mongoose.Promise = global.Promise;
 
 const {PORT, DATABASE_URL} = require('./config');
-
+console.log('unicorn', PORT, DATABASE_URL)
 const app = express();
 
 // Logging
