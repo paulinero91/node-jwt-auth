@@ -48,7 +48,8 @@ img.src = local_data[0].canvas.canvas;
     }, 2000)
     App.ctx.lineWidth = 5;
     App.ctx.lineCap = "round";
-    App.socket = io.connect('http://localhost:4000');
+    // App.socket = io.connect('http://localhost:4000');
+    App.socket = io.connect('https://community-draw.herokuapp.com:4000');
     App.socket.on('draw', function(data) {
       return App.draw(data.x, data.y, data.type);
     });
